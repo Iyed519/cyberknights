@@ -5,27 +5,24 @@ import lombok.*;
 
 import java.time.LocalDate;
 
-
-
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class FinancialReport {
-
+public class Asset {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idFinancialReport;
-    private int num;
-    private LocalDate date;
+    private Long idAsset;
     private String description;
+    private float purchaseValue;
+    private float currentValue;
+    @Enumerated(EnumType.STRING)
+    private TypeAsset type;
+    private LocalDate acquisitionDate;
 
-    @OneToOne
+
+    @ManyToOne
     BalanceSheet balanceSheet;
-    @OneToOne
-    IncomeStatement incomeStatement;
-    @OneToOne
-    CashFlows cashFlows;
 }
