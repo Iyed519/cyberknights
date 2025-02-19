@@ -1,4 +1,4 @@
 package tn.coconsultbackend.Model;
 
-public class EmploymentEvaluation {
+public class InvestmentTransaction {
 }
