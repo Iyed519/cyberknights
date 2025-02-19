@@ -5,3 +5,4 @@ import tn.coconsultbackend.Model.Process;
 
 public interface FinanceAndAccountingProcessRepository extends JpaRepository<Process,Long> {
 }
+//vbk:qbfkqqegregre
