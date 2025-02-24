@@ -1,17 +1,10 @@
 package tn.coconsultbackend.auth;
 
 import jakarta.mail.MessagingException;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.server.ResponseStatusException;
 import tn.coconsultbackend.email.EmailService;
 import tn.coconsultbackend.email.EmailTemplateName;
 import tn.coconsultbackend.role.RoleRepository;
@@ -39,8 +32,10 @@ public class AuthenticationService {
 
 
     public void register(RegistrationRequest request) throws MessagingException {
+
         var userRole = roleRepository.findByName("USER")
                 .orElseThrow(() -> new IllegalStateException("Role User isnt initialized"));
+
         var user = User.builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
@@ -48,8 +43,10 @@ public class AuthenticationService {
                 .password(passwordEncoder.encode(request.getPassword()))
                 .accountLocked(false)
                 .enabled(false)
-                .roles(List.of(userRole))
-                .build();
+                .roles(List.of(userRole)).build();
+
+
+
         userRepository.save(user);
         sendValidationEmail(user);
     }

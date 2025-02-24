@@ -30,11 +30,6 @@ spring:
         connectiontimeout: 5000
         timeout: 3000
         writetimeout: 5000
-#  security:
-#    oauth2:
-#      resourceserver:
-#        jwt:
-#          issuer-uri: "http://localhost:9090/realms/testing-Realm"
 application:
   security:
     jwt:
@@ -47,4 +42,4 @@ application:
     frontend:
       activation-url: http://localhost:4200/activate-account
 server:
-  port: 9000
+  port: 8080
