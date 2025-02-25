@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tn.coconsultbackend.user.UserRepository;
 
 @RequiredArgsConstructor
-@Service
+//@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserRepository repository;
