@@ -19,4 +19,6 @@ public class TrainingTest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+
 }

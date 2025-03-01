@@ -19,4 +19,11 @@ public class Evaluation {
 
     @OneToOne(fetch = FetchType.EAGER)
     private TrainingLevel trainingLevel;
+
+    private Float evaluationScore;
+    private Boolean isEvaluationValidated;
+
+    @OneToOne (fetch = FetchType.EAGER)
+    private Certification certification;
+
 }

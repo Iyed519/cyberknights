@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,9 +19,20 @@ public class TrainingLevel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private String name;
+    private String description;
+    private TrainingDifficulty trainingDifficulty;
+
     @ManyToOne
     private Training training;
 
-    @OneToOne
-    private TrainingLevel level;
+    @OneToMany(mappedBy = "trainingLevel")
+    private List<TrainingContent> trainingContents;
+
+
+    private LevelStatus levelStatus;
+
+    @OneToMany(mappedBy = "trainingLevel")
+    private List<Quiz> quizzes;
 }
+

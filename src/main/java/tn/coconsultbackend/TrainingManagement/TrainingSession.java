@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import tn.coconsultbackend.user.User;
+
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -19,4 +22,10 @@ public class TrainingSession {
 
     @ManyToOne
     private Training training;
+
+    @ManyToMany (mappedBy = "trainingSessions")
+    private List<User> trainees;
+
+    @OneToOne
+    private User trainer;
 }

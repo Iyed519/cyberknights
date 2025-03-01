@@ -39,8 +39,6 @@ public class Training {
 
     private TrainingStatus trainingStatus;
 
-    @OneToMany(mappedBy = "training")
-    private List<TrainingContent> trainingContents;
 
 
 
