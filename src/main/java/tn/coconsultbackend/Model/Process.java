@@ -10,12 +10,14 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@FieldDefaults(level = AccessLevel.PRIVATE)
-
 public class Process {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long idProcess;
-    String processName;
+    private Long idProcess;
+    @Enumerated(EnumType.STRING)
+    private ProcessType processType;
+
+    @ManyToOne
+    private ISOSession session;
 }
 

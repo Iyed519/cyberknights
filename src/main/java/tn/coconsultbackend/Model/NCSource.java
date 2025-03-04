@@ -1,0 +1,6 @@
+package tn.coconsultbackend.Model;
+
+public enum NCSource {
+    AUDIT, CLIENT_COMPLAINT, CONTROL_AND_SURVEILLANCE, EXTERNAL_SERVICE_PROVIDERS, INDICATORS, OTHERS
+
+}
