@@ -31,10 +31,6 @@ spring:
         timeout: 3000
         writetimeout: 5000
 application:
-  security:
-    jwt:
-      secret-key: a98f8d8433bc3cae0e11ac4361d7969b4b562d6c4f421d02b448d4f3969d0bf1bd3bc31a41117cda4c0effdae6a58d659f43a7a9addf8b40dae80ab5d1355391b2bd6c7eace0171880b0ed510a24a1599a82639ef55c4e104861137b4435f8ddf78c01eabf4eaba24dc7320d046c52d3460e514ff35c40ccc51bf973682948d5a710df0a3532f444ccfe4d9f9b4c6bff09078de2b628d52b68c2ef40294118900ef0c9b12f13d8e1daaff241c334ae5e92056d73ef68a05ab324b72447381aa11ccfffb95625895e1498d9e9fc4fbcd67b7ef148bb52452882082937e0616579089fe79750c1055caf5349d052a5c3432c18a15e0b2bb5bb8e684ffad4ca6320
-      expiration: 86400000
   file:
     uploads:
       photos-output-path: ./uploads
@@ -42,4 +38,4 @@ application:
     frontend:
       activation-url: http://localhost:4200/activate-account
 server:
-  port: 8080
+  port: 9000
