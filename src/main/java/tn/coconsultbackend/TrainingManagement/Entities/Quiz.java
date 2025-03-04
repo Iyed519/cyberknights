@@ -32,7 +32,7 @@ public class Quiz {
     private String description;
 
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Question> questions;
 
     @DecimalMin(value = "0.0", message = "Score must be at least 0")

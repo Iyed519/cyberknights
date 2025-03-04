@@ -9,6 +9,10 @@ import java.util.List;
 
 @Repository
 public interface QuizRepository extends JpaRepository<Quiz, Long> {
+
+    @Query("SELECT q FROM Quiz q WHERE q.id = :id")
+    Quiz findQuizById(Long id);
+
     Quiz findByName(String name);
 
     List<Quiz> findByCreatedAt(LocalDateTime createdAt);
@@ -30,4 +34,6 @@ public interface QuizRepository extends JpaRepository<Quiz, Long> {
 
     @Query("SELECT q FROM Quiz q WHERE q.updatedAt BETWEEN :start AND :end ORDER BY q.id ASC")
     List<Quiz> findQuizzesByUpdatedAtBetween(LocalDateTime start, LocalDateTime end);
+
+
 }

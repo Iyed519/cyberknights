@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import tn.coconsultbackend.TrainingManagement.Entities.Question;
 import tn.coconsultbackend.TrainingManagement.Entities.Quiz;
@@ -15,11 +16,8 @@ import java.util.Optional;
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, Long> {
 
-
-
-    Question findQuestionById(long id);
-
-    List<Question> findQuestionsByIsAnswerCorrect(boolean isAnswerCorrect);
+    @Query("SELECT q FROM Question q WHERE q.id = :id")
+    Question findQuestionById(@Param("id") Long id);    List<Question> findQuestionsByIsAnswerCorrect(boolean isAnswerCorrect);
 
     List<Question> findQuestionsByQuestionText(String questionText);
 
@@ -30,4 +28,5 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
     List<Question> findAllQuestions();
     void deleteQuestionById(long id);
 
+    void removeQuestionById(Long id);
 }

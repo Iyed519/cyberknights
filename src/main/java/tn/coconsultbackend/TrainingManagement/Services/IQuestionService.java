@@ -18,6 +18,6 @@ public interface IQuestionService {
 
     public void deleteQuestion(long id);
 
-    Optional<Question> findQuestionByText(String text);
+//    Question findQuestionByText(String text);
 
     }

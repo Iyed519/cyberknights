@@ -10,7 +10,6 @@ import tn.coconsultbackend.TrainingManagement.Entities.Question;
 import tn.coconsultbackend.TrainingManagement.Services.QuestionService;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -37,10 +36,10 @@ public class QuestionRestController {
         return questionService.getQuestion(id);
     }
 
-    @GetMapping("/findQuestionByQuestionText")
-    Optional<Question> findQuestionByText(@RequestParam String text) {
-        return questionService.findQuestionByText(text);
-    }
+//    @GetMapping("/findQuestionByQuestionText")
+//    Question findQuestionByText(@RequestParam String text) {
+//        return questionService.findQuestionByText(text);
+//    }
 
     @GetMapping("/getAllQuestions")
     public List<Question> getAllQuestions() {

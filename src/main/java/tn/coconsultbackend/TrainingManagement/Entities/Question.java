@@ -19,7 +19,6 @@ import lombok.Setter;
 public class Question{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
     private Long id;
 
     @NotBlank(message = "name must not be blank")

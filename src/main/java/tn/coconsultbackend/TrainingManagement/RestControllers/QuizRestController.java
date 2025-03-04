@@ -1,4 +1,5 @@
 package tn.coconsultbackend.TrainingManagement.RestControllers;
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import tn.coconsultbackend.TrainingManagement.Entities.Question;
 import tn.coconsultbackend.TrainingManagement.Entities.Quiz;
+import tn.coconsultbackend.TrainingManagement.Repositories.QuizRepository;
 import tn.coconsultbackend.TrainingManagement.Services.QuizService;
 
 import java.time.LocalDateTime;
@@ -41,7 +44,21 @@ public class QuizRestController {
             @ApiResponse(responseCode = "200", description = "Quiz updated successfully"),
             @ApiResponse(responseCode = "400", description = "Invalid quiz data: {validation messages}")
     })
+
+
+
+    @PutMapping("/addQuestion/{id}")
+    public void addQuestionToQuiz(@PathVariable Long id, @Valid @RequestBody Question question) {
+        quizService.addQuestionToQuiz(id, question);
+    }
+
+    @DeleteMapping("/deleteQuestion/{idQuiz}")
+    public void deleteQuestionFromQuiz(@PathVariable Long idQuiz, @RequestBody Question question) {
+        quizService.deleteQuestionFromQuiz(idQuiz,question);
+    }
 //    @PutMapping("/updateQuiz/{id}")
+
+
     @PutMapping("/{id}")
     public void updateQuiz(@PathVariable Long id, @Valid @RequestBody Quiz quiz) {
         quizService.updateQuiz(id, quiz);

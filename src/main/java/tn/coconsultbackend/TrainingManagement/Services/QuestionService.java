@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.coconsultbackend.TrainingManagement.Entities.Question;
+import tn.coconsultbackend.TrainingManagement.Exceptions.QuestionNotFoundException;
 import tn.coconsultbackend.TrainingManagement.Repositories.QuestionRepository;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class QuestionService implements IQuestionService {
 
     @Override
     public Question getQuestion(long id) {
-        return questionRepository.findById(id).orElse(null);
+        return questionRepository.findQuestionById(id);
     }
 
     @Override
@@ -27,11 +28,12 @@ public class QuestionService implements IQuestionService {
         return new ArrayList<>(questions);
     }
 
-    @Override
-    public Optional<Question> findQuestionByText(String text){
-        Optional<Question> question = questionRepository.findByQuestionText(text);
-        return question;
-    }
+//    @Override
+//    public Question findQuestionByText(String text){
+//        Question question = questionRepository.findByQuestionText(text)
+//                .orElse(throw new QuestionNotFoundException("tthere is no question"));
+//        return question;
+//    }
 
 
     @Override
@@ -48,7 +50,7 @@ public class QuestionService implements IQuestionService {
 
     @Override
     public void updateQuestion(long id, Question question) {
-        Question updatedQuestion = questionRepository.findById(id).orElse(null);
+        Question updatedQuestion = questionRepository.findQuestionById(id);
         updatedQuestion.setQuestionText(question.getQuestionText());
         updatedQuestion.setTraineeAnswer(question.getTraineeAnswer());
         updatedQuestion.setCorrectAnswer(question.getCorrectAnswer());
@@ -59,8 +61,7 @@ public class QuestionService implements IQuestionService {
 
     @Override
     public void deleteQuestion(long id){
-        Question question = questionRepository.findById(id)
-                .orElseThrow(() -> new NullPointerException("Question not found with ID: " + id));
+        Question question = questionRepository.findQuestionById(id);
         questionRepository.delete(question);
     }
 }
