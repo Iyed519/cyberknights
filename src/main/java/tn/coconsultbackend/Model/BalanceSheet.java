@@ -1,5 +1,6 @@
 package tn.coconsultbackend.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
@@ -39,13 +40,16 @@ public class BalanceSheet {
 
 
 
-    @OneToMany(mappedBy = "balanceSheet",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "balanceSheet",fetch = FetchType.EAGER)
+     @JsonIgnore
     List<Asset> assets;
 
-    @OneToMany(mappedBy = "balanceSheet",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "balanceSheet",fetch = FetchType.EAGER)
+    @JsonIgnore
     List<Liability> liabilities;
 
     @OneToOne(mappedBy = "balanceSheet")
+    @JsonIgnore
     FinancialReport financialReport;
 
 }

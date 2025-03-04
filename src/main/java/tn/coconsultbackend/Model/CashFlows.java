@@ -1,5 +1,6 @@
 package tn.coconsultbackend.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
@@ -37,8 +38,9 @@ public class CashFlows {
     private CategorieFlows categorie;
     private LocalDate date;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "cashFlowStatement_id")
+    @JsonIgnore
     private CashFlowStatement cashFlowStatement;
 
 }

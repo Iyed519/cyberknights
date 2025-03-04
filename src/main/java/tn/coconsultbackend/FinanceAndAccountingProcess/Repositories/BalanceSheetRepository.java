@@ -6,4 +6,5 @@ import tn.coconsultbackend.Model.BalanceSheet;
 
 @Repository
 public interface BalanceSheetRepository extends JpaRepository<BalanceSheet,Long> {
+    BalanceSheet findByPeriod(String period);
 }

@@ -1,5 +1,6 @@
 package tn.coconsultbackend.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
@@ -23,10 +24,10 @@ public class Asset {
     @NotBlank(message = "Le nom de l'actif est obligatoire")
     private String description;
 
-    @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$", message = "period must be in the format YYYY-MM-DD")
+    @Pattern(regexp = "^(\\d{4})-(0[1-9]|1[0-2])$", message = "period has to be like YYYY-MM")
     private String period;
 
-    @DecimalMin(value = "0.0", message = "value can't be negative")
+    @DecimalMin(value = "0.01", message = "value can't be negative")
     private BigDecimal value;
 
     @Enumerated(EnumType.STRING)
@@ -38,7 +39,8 @@ public class Asset {
     private LocalDate acquisitionDate;
 
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "balanceSheet_id")
+    @JsonIgnore
     BalanceSheet balanceSheet;
 }

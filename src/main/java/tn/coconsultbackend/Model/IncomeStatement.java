@@ -1,6 +1,7 @@
 package tn.coconsultbackend.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Pattern;
@@ -37,12 +38,15 @@ public class IncomeStatement {
 
 
     @OneToMany(mappedBy = "incomeStatement",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+            @JsonIgnore
     List<Revenue> revenues;
 
     @OneToMany(mappedBy = "incomeStatement",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+            @JsonIgnore
     List<Expense> expenses;
 
     @OneToOne(mappedBy = "incomeStatement")
+    @JsonIgnore
     FinancialReport financialReport;
 
 

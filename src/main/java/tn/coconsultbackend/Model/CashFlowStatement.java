@@ -1,5 +1,6 @@
 package tn.coconsultbackend.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
@@ -23,9 +24,12 @@ public class CashFlowStatement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCashFlowStatement ;
 
+
     @Column(nullable = false, unique = true)
-    @Pattern(regexp = "^(\\d{4})-(0[1-9]|1[0-2])$", message = "The period must be in the format YYYY-MM")
+    @Pattern(regexp = "^(\\d{4})-(0[1-9]|1[0-2])$", message = "period has to be like YYYY-MM")
     private String period;
+
+
 
     @DecimalMin(value = "0.0", message = "Cash inflows cannot be negative")
     private BigDecimal totalInflows ;
@@ -37,9 +41,11 @@ public class CashFlowStatement {
 
     private LocalDate date;
 
-    @OneToMany(mappedBy = "cashFlowStatement",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cashFlowStatement",fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<CashFlows> transactions;
     @OneToOne(mappedBy = "cashFlowStatement")
+            @JsonIgnore
     FinancialReport financialReport;
 }
 

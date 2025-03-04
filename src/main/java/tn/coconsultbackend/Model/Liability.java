@@ -1,5 +1,6 @@
 package tn.coconsultbackend.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
@@ -23,10 +24,10 @@ public class Liability {
     @NotBlank(message = "Liability name is required")
     private String name;
 
-    @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$", message = "period must be in the format YYYY-MM-DD")
+    @Pattern(regexp = "^(\\d{4})-(0[1-9]|1[0-2])$", message = "period has to be like YYYY-MM")
     private String period;
 
-    @DecimalMin(value = "0.0", message = "Liability amount cannot be negative")
+    @DecimalMin(value = "0.01", message = "Liability amount cannot be negative")
     private BigDecimal amount;
 
     @Enumerated(EnumType.STRING)
@@ -39,7 +40,8 @@ public class Liability {
 
 
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "balanceSheet_id")
+    @JsonIgnore
     BalanceSheet balanceSheet;
 }

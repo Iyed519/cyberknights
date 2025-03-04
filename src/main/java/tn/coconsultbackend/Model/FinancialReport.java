@@ -1,5 +1,6 @@
 package tn.coconsultbackend.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
@@ -48,13 +49,16 @@ public class FinancialReport {
 
     @OneToOne
     @JoinColumn(name = "balanceSheet_id")
+    @JsonIgnore
     private BalanceSheet balanceSheet;
 
     @OneToOne
     @JoinColumn(name = "incomeStatement_id")
+    @JsonIgnore
     private IncomeStatement incomeStatement;
 
     @OneToOne
     @JoinColumn(name = "cashFlowStatement_id")
+    @JsonIgnore
     private CashFlowStatement cashFlowStatement;
 }
